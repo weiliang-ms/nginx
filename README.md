@@ -78,7 +78,7 @@
 
 > 4、安装nginx
 
-上传[安装包](https://github.com/weiliang-ms/nginx/archive/latest.tar.gz)至目标服务器`/tmp`目录下，`root`执行：
+上传[安装包](https://github.com/wl-deploy/nginx/archive/latest.tar.gz)至目标服务器`/tmp`目录下，`root`执行：
 
 
 	tar zxvf nginx-latest.tar.gz && cd nginx && sh install.sh && cd -
@@ -119,8 +119,8 @@
 
 根据操作系统选取对应版本
 
-- [nginx-1.18.0-neu.el6.x86_64.rpm](https://github.com/weiliang-ms/nginx/releases/download/latest/nginx-1.18.0-neu.el6.x86_64.rpm)
-- [nginx-1.18.0-neu.el7.x86_64.rpm](https://github.com/weiliang-ms/nginx/releases/download/latest/nginx-1.18.0-neu.el7.x86_64.rpm)
+- [nginx-1.18.0-neu.el6.x86_64.rpm](https://github.com/wl-deploy/nginx/releases/download/latest/nginx-1.18.0-neu.el6.x86_64.rpm)
+- [nginx-1.18.0-neu.el7.x86_64.rpm](https://github.com/wl-deploy/nginx/releases/download/latest/nginx-1.18.0-neu.el7.x86_64.rpm)
 
 > 上传安装
 
