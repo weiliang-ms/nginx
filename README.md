@@ -1,5 +1,4 @@
-[![LICENSE](https://img.shields.io/github/license/weiliang-ms/nginx-rpm "LICENSE")](./LICENSE "LICENSE")  [![software](https://img.shields.io/badge/software-nginx-red "software")]( http://nginx.org "software")
-
+[![LICENSE](https://img.shields.io/github/license/weiliang-ms/nginx-rpm "LICENSE")](./LICENSE "LICENSE")  [![software](https://img.shields.io/badge/software-nginx-red "software")]( http://nginx.org "software") [![release](https://img.shields.io/badge/release-latest-orange "release")](https://github.com/weiliang-ms/nginx-rpm/releases/tag/latest "release")
 # nginx rpm包
 ## 适用场景
 
