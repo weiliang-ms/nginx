@@ -24,10 +24,11 @@
 
 `CenOS7`下，执行
 
-    yum install -y rpm-build
+    yum install -y rpm-build dos2unix
     git clone https://github.com/weiliang-ms/nginx-rpm.git
-    rpmbuild -ba rpmbuild/SPECS/nginx.spec
-
+    dos2unix nginx-rpm/rpmbuild/SPECS/nginx.spec
+    rpmbuild -ba nginx-rpm/rpmbuild/SPECS/nginx.spec
+    
 ## rpmbuild解析
 
 ### 目录结构说明

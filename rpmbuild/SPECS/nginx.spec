@@ -6,7 +6,7 @@
 
 %define srcext tar.gz
 
-%define opensslVersion openssl-1.1.1j
+%define opensslVersion openssl-OpenSSL_1_1_1j
 
 # Common info
 
