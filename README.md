@@ -1,3 +1,5 @@
+![GitHub](https://img.shields.io/github/license/weiliang-ms/nginx-rpm)
+
 - [nginx rpm包](#nginx-rpm%E5%8C%85)
   - [适用场景](#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF)
   - [构建](#%E6%9E%84%E5%BB%BA)
