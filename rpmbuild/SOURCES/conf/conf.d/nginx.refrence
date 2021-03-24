@@ -1,0 +1,29 @@
+#文件索引
+server {
+	listen 80;
+
+        location /download {
+                alias /static/download/;
+        # 防止浏览器预览打开
+       		if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
+            		add_header Content-Disposition attachment;
+        	}
+        # 这里是代理的路径，文件都要放在这里，Nginx-Fancyindex-Theme主题也要放在这个路径下
+        fancyindex on;
+        fancyindex_exact_size off;
+        fancyindex_localtime on;
+
+        # 由于我配置了访问路径是http://ip:70/file，主题的路径前需要加上/file，
+        # 如果配置的是location /，则路径为/Nginx-Fancyindex-Theme-light/header.html
+        fancyindex_header "/download/Nginx-Fancyindex-Theme-light/header.html";
+
+        # 由于我配置了访问路径是http://ip:70/file，主题的路径前需要加上/file
+        # 如果配置的是location /，则路径为/Nginx-Fancyindex-Theme-light/footer.html
+        fancyindex_footer "/download/Nginx-Fancyindex-Theme-light/footer.html";
+
+        fancyindex_ignore "examplefile.html";
+        fancyindex_ignore "Nginx-Fancyindex-Theme-light";
+        fancyindex_name_length 255;
+        }
+
+}

@@ -1,0 +1,6 @@
+server {
+	listen 8099;
+	location / {
+		alias html/;
+	}
+}

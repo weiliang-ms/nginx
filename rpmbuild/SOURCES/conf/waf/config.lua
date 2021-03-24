@@ -1,0 +1,12 @@
+open_waf=false
+open_check_url=false
+open_check_agrs=false
+open_check_host=false
+open_check_referer=false
+open_check_agent=false
+open_check_method=false
+open_check_body=false
+white_rule_path="/opt/nginx/conf/waf/white/"
+black_rule_path="/opt/nginx/conf/waf/black/"
+log_path="/opt/nginx/logs/"
+open_logging=true

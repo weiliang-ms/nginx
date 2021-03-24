@@ -1,0 +1,6 @@
+\.(git)
+.(htaccess|htgroup)$
+info$
+(phpmyadmin|jmx-console|jmxinvokerservlet)
+java\.lang
+health$

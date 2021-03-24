@@ -1,0 +1,25 @@
+proxy_set_header   Host             $http_host;
+proxy_set_header   X-Real-IP        $remote_addr;
+proxy_set_header Referer $http_referer;
+proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+proxy_set_header   X-Forwarded-Proto  $scheme;
+proxy_set_header X-Forwarded-Server $http_host;
+proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504 http_404;
+expires 0;
+add_header Cache-Control "no-cache, no-store";
+add_header Referrer-Policy "same-origin";
+add_header X-XSS-Protection "1; mode=block";
+add_header X-Content-Type-Options "nosniff";
+proxy_hide_header X-Application-Context;
+proxy_hide_header Access-Control-Allow-Origin;
+proxy_hide_header X-Powered-By;
+proxy_hide_header X-AspNetMvc-Version;
+proxy_hide_header X-Drupal-Cache;
+proxy_hide_header X-Powered-By;
+proxy_hide_header Server;
+proxy_hide_header X-AspNet-Version;
+proxy_hide_header X-Drupal-Dynamic-Cache;
+proxy_hide_header X-Generator;
+proxy_hide_header X-Runtime;
+proxy_hide_header X-Rack-Cache;
+

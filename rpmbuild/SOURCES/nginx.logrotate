@@ -1,0 +1,18 @@
+/opt/nginx/logs/*.log {
+        daily
+        missingok
+        rotate 90
+        compress
+        delaycompress
+        notifempty
+        create 644 root root
+        sharedscripts
+            minsize 500M
+        dateext
+        dateformat _%Y%m%d
+        postrotate
+        if [ -f /opt/nginx/logs/nginx.pid ]; then
+                kill -USR1 `cat /opt/nginx/logs/nginx.pid`
+        fi
+        endscript
+}
