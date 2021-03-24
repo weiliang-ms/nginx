@@ -1,21 +1,5 @@
-[![LICENSE](https://img.shields.io/github/license/weiliang-ms/nginx-rpm "LICENSE")](./LICENSE "LICENSE")
+[![LICENSE](https://img.shields.io/github/license/weiliang-ms/nginx-rpm "LICENSE")](./LICENSE "LICENSE")  [![software](https://img.shields.io/badge/software-nginx-red "software")]( http://nginx.org "software")
 
-- [nginx rpm包](#nginx-rpm%E5%8C%85)
-  - [适用场景](#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF)
-  - [构建](#%E6%9E%84%E5%BB%BA)
-  - [rpmbuild解析](#rpmbuild%E8%A7%A3%E6%9E%90)
-    - [目录结构说明](#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E)
-    - [定义变量](#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F)
-    - [软件信息](#%E8%BD%AF%E4%BB%B6%E4%BF%A1%E6%81%AF)
-    - [声明构建介质](#%E5%A3%B0%E6%98%8E%E6%9E%84%E5%BB%BA%E4%BB%8B%E8%B4%A8)
-    - [声明运行时依赖](#%E5%A3%B0%E6%98%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BE%9D%E8%B5%96)
-    - [prep准备阶段](#prep%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5)
-    - [build构建阶段](#build%E6%9E%84%E5%BB%BA%E9%98%B6%E6%AE%B5)
-    - [install安装阶段](#install%E5%AE%89%E8%A3%85%E9%98%B6%E6%AE%B5)
-    - [clean清理阶段](#clean%E6%B8%85%E7%90%86%E9%98%B6%E6%AE%B5)
-    - [rpm包制作阶段](#rpm%E5%8C%85%E5%88%B6%E4%BD%9C%E9%98%B6%E6%AE%B5)
-    - [post阶段](#post%E9%98%B6%E6%AE%B5)
-    - [postun阶段](#postun%E9%98%B6%E6%AE%B5)
 # nginx rpm包
 ## 适用场景
 
