@@ -7,16 +7,14 @@
 
 ## 构建
 
-`CenOS7`下，执行
+`CenOS7`下，执行以下命令构建`rpm`包
 
     yum install -y rpm-build dos2unix
     git clone https://github.com/weiliang-ms/nginx-rpm.git
     dos2unix nginx-rpm/rpmbuild/SPECS/nginx.spec
     rpmbuild -ba nginx-rpm/rpmbuild/SPECS/nginx.spec
     
-## rpmbuild解析
-
-### 目录结构说明
+## 目录结构说明
 
 
 | 目录名 | 说明 | macros中的宏名 |
@@ -27,6 +25,8 @@
 | SOURCES | 所有源代码和补丁文件的存放目录 | %_sourcedir |
 | SPECS | 存放SPEC文件的目录 | %_specdir |
 | SRPMS | 软件最终的rpm源码格式存放路径 | %_srcrpmdir |
+
+## nginx.spec解析
 
 ### 定义变量
 
