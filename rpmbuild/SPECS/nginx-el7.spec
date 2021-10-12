@@ -69,6 +69,8 @@ nginx [engine x] is an HTTP and reverse proxy server
 
 %build
 
+ls
+
 # lua
 cd LuaJIT-2.0.5 && make -j $(nproc) && \
   make install PREFIX=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2
