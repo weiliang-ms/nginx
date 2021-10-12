@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@master
       - name: install
         run: yum install -y make rpm-build dos2unix
-      - name: cat
-        run: cat ~/.rpmmacros && pwd
       - name: make
         run: make all
       - name: list
         run: ls
+      - name: cat
+        run: cat ~/.rpmmacros && pwd
       - name: build
         run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
