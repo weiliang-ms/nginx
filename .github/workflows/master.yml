@@ -18,6 +18,6 @@ jobs:
       - name: make
         run: make all
       - name: list
-        run: ls -R rpmbuild
+        run: pwd && ls -R rpmbuild
       - name: build
         run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
