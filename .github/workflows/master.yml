@@ -14,10 +14,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
       - name: install
-        run: yum install -y make
-      - name: list
-        run: ls /__w/nginx-rpm/nginx-rpm/rpmbuild/SOURCES/openssl-OpenSSL_1_1_1l.tar.gz
+        run: yum install -y make rpm-build dos2unix
+      - name: cat
+        run: cat ~/.rpmmacros && pwd
       - name: make
         run: make all
+      - name: list
+        run: ls
       - name: build
-        run: rpmbuild -ba /__w/nginx-rpm/nginx-rpm/rpmbuild/SPECS/nginx-el7.spec
+        run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec

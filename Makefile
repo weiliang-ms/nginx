@@ -24,7 +24,4 @@ replace:
 	sed -i "s#OPENSSL_VERSION#${OPENSSL_VERSION}#" ${SPECS_DIR}/nginx-el7.spec
 	cat ${SPECS_DIR}/nginx-el7.spec
 
-install:
-	yum install -y rpm-build dos2unix
-
-all: download replace install
+all: download replace
