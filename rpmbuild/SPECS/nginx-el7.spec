@@ -56,7 +56,7 @@ Source25: ngx_devel_kit-0.3.0.tar.gz
 
 Requires: logrotate
 
-BuildRequires: gcc
+BuildRequires: gcc gcc-c++
 
 %description
 
