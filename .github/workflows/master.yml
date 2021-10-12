@@ -12,4 +12,4 @@ jobs:
     container: docker.io/centos:7
     steps:
       - uses: actions/checkout@master
-      - run: yum install -y make && make
+      - run: yum install -y make && make all
