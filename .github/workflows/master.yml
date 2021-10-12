@@ -13,3 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - run: yum install -y make && make all
+      - run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
