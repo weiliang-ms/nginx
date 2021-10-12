@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     container: docker.io/centos:7
     steps:
-      - uses: actions/checkout@master
-      - run: yum install -y make && make all
-      - run: ls -R /github/home/
-      - run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
+      - name: checkout
+        uses: actions/checkout@master
+      - name: install
+        run: yum install -y make
+      - name: make
+        run: make all
