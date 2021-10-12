@@ -38,7 +38,7 @@ Source6: ngx_cache_purge-2.3.tar.gz
 
 Source11: nginx.logrotate
 
-#Source12: nginx.conf
+Source12: nginx.conf
 
 Source13: conf
 
@@ -138,6 +138,7 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/etc/nginx/
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/contrib/vim %{buildroot}/etc/nginx/
 %__cp -r -v %{S:13} %{buildroot}/etc/nginx
+%__cp -r -v %{S:12} %{buildroot}/etc/nginx/nginx.conf
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
