@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@master
       - name: install
         run: yum install -y make
-      - name: ls
-        run: ls -R /
       - name: list
-        run: ls rpmbuild/SOURCES/openssl-OpenSSL_1_1_1l.tar.gz
+        run: ls /__w/nginx-rpm/nginx-rpm/rpmbuild/SOURCES/openssl-OpenSSL_1_1_1l.tar.gz
       - name: make
         run: make all
+      - name: build
+        run: rpmbuild -ba /__w/nginx-rpm/nginx-rpm/rpmbuild/SPECS/nginx-el7.spec

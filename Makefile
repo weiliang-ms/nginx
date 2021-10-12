@@ -26,6 +26,5 @@ replace:
 
 install:
 	yum install -y rpm-build dos2unix
-	rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
 
 all: download replace install
