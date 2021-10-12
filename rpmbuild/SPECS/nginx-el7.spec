@@ -128,7 +128,7 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module
 
-make -j $(nproc) > /dev/null
+make -j $(nproc)
 
 %install
 %__make install DESTDIR=%{buildroot}
