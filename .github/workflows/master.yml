@@ -19,7 +19,5 @@ jobs:
         run: make all
       - name: list
         run: ls
-      - name: cat
-        run: cat ~/.rpmmacros && pwd
       - name: build
-        run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
+        run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
