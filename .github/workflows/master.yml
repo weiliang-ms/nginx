@@ -22,10 +22,3 @@ jobs:
       - run: echo %_topdir $PWD/rpmbuild > ~/.rpmmacros
       - name: build
         run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
-      - name: release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: "rpmbuild/RPMS/x86_64/nginx-1.20.1-wl.el7.x86_64.rpm"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
