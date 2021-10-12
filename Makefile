@@ -8,11 +8,13 @@ NGINX_DOWNLOAD_URL:="https://nginx.org/download"
 OPENSSL_DOWNLOAD_URL:="https://github.com/openssl/openssl/archive/refs/tags/"
 
 download:
-	curl --connect-timeout 10 -m 20 ${NGINX_DOWNLOAD_URL}/nginx-${NGINX_VERSION}.tar.gz \
+	curl -L --connect-timeout 10 -m 20 ${NGINX_DOWNLOAD_URL}/nginx-${NGINX_VERSION}.tar.gz \
 		-o ${RESOURCE_DIR}/nginx-${NGINX_VERSION}.tar.gz
 
-	curl --connect-timeout 10 -m 20 ${OPENSSL_DOWNLOAD_URL}/OpenSSL_${OPENSSL_VERSION}.tar.gz \
+	curl -L --connect-timeout 10 -m 20 ${OPENSSL_DOWNLOAD_URL}/OpenSSL_${OPENSSL_VERSION}.tar.gz \
     		-o ${RESOURCE_DIR}/openssl-OpenSSL_${OPENSSL_VERSION}.tar.gz
+
+	ls ${RESOURCE_DIR}
 
 
 replace:
