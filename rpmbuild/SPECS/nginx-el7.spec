@@ -94,7 +94,7 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-compat \
     --with-file-aio \
     --with-threads \
-    --with-openssl=./%{opensslVersion} \
+    --with-openssl=%{opensslVersion} \
     --with-pcre=./pcre-8.44 \
     --with-zlib=./zlib-1.2.11 \
     --with-stream_ssl_preread_module --with-stream_ssl_module \
@@ -127,7 +127,6 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-stream_realip_module \
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module \
-    --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC' \
     --with-ld-opt='-Wl,-z,relro -Wl,-z,now -pie'
 
 make -j $(nproc) > /dev/null
@@ -159,12 +158,9 @@ mkdir -p /var/log/nginx /var/cache/nginx
 chown nginx:nginx -R /var/log/nginx
 chown nginx:nginx -R /var/cache/nginx
 
-echo "* soft nofile 655350" >> /etc/security/limits.conf
-
-echo "* hard nofile 655350" >> /etc/security/limits.conf
-
+echo "* soft nofile 65535" >> /etc/security/limits.conf
+echo "* hard nofile 65535" >> /etc/security/limits.conf
 echo "* soft nproc 65535" >> /etc/security/limits.conf
-
 echo "* hard nproc 65535" >> /etc/security/limits.conf
 
 #sed -i '/\/etc\/logrotate.d\/nginx/d' /etc/crontab
@@ -175,10 +171,10 @@ cat > ~/.vim/filetype.vim <<EOF
 au BufRead,BufNewFile /etc/nginx/conf.d/*.conf set ft=nginx
 EOF
 
-chmod +x /opt/nginx/lj2/lib/*
+chmod +x /etc/nginx/lj2/lib/*
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/nginx/lj2/lib
-\cp /opt/nginx/lj2/lib/libluajit-5.1.so.2 /lib/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/etc/nginx/lj2/lib
+\cp /etc/nginx/lj2/lib/libluajit-5.1.so.2 /lib/
 ldconfig
 
 mkdir -p /opt/nginx/ssl
@@ -241,10 +237,12 @@ echo "successful..."
 %postun
 
 rm -rf /etc/nginx/
+rm -rf /var/log/nginx /var/cache/nginx
+usedel nginx
+groupdel nginx
 
 sed -i "/* soft nofile 655350/d" /etc/security/limits.conf
 sed -i "/* hard nofile 655350/d" /etc/security/limits.conf
 sed -i "/* soft nproc 65535/d" /etc/security/limits.conf
 sed -i "/* hard nproc 65535/d" /etc/security/limits.conf
-
 %changelog

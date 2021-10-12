@@ -1,4 +1,4 @@
-/opt/nginx/logs/*.log {
+/var/log/nginx/*.log {
         daily
         missingok
         rotate 90
@@ -7,12 +7,12 @@
         notifempty
         create 644 root root
         sharedscripts
-            minsize 500M
+        minsize 500M
         dateext
         dateformat _%Y%m%d
         postrotate
-        if [ -f /opt/nginx/logs/nginx.pid ]; then
-                kill -USR1 `cat /opt/nginx/logs/nginx.pid`
+        if [ -f /var/run/nginx.pid ]; then
+            kill -USR1 `cat /var/run/nginx.pid`
         fi
         endscript
 }
