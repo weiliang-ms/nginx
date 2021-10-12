@@ -1,0 +1,15 @@
+name: Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  go-test:
+    runs-on: ubuntu-latest
+    container: docker.io/centos:7
+    steps:
+      - uses: actions/checkout@master
+      - run: make

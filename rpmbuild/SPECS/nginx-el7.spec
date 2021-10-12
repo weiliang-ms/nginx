@@ -2,7 +2,7 @@
 
 %define orgnize wl
 
-%define realver 1.18.0
+%define realver NGINX_VERSION
 
 %define srcext tar.gz
 
@@ -54,7 +54,7 @@ Source24: lua-nginx-module-0.10.13.tar.gz
 
 Source25: ngx_devel_kit-0.3.0.tar.gz
 
-Requires:      logrotate
+Requires: logrotate
 
 #BuildRequires: gcc zlib-devel pcre-devel
 
@@ -77,9 +77,9 @@ cd ../
 export LUAJIT_LIB=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/lib
 export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/luajit-2.0
 
-#./configure --prefix=/opt/nginx --with-stream --pid-path=/var/run/nginx.pid --add-module=%{_builddir}/%{realname}-%{realver}%{?extraver}/ngx_devel_kit-0.3.0 --add-module=%{_builddir}/%{realname}-%{realver}%{?extraver}/lua-nginx-module-0.10.13
 ./configure --prefix=/opt/nginx --with-stream \
         --pid-path=/var/run/nginx.pid \
+        --sbin-path=%{_sbindir}/%{name}
         --with-openssl=./%{opensslVersion} \
         --with-pcre=./pcre-8.44 \
         --with-zlib=./zlib-1.2.11 \
@@ -111,6 +111,7 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %files
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config(noreplace) %{_sysconfdir}/init.d/%{name}
+%config %{_sbindir}/%{name}
 %doc
 /opt/nginx/*
 
@@ -143,44 +144,33 @@ ldconfig
 mkdir -p /opt/nginx/ssl
 
 cd /opt/nginx/ssl
-
 # 域名
 export domain=www.nginx.com
-
 # IP地址（可选）
 export address=192.168.1.11
-
 # 国家
 export contryName=CN
-
 # 省/州/邦
 export stateName=Liaoning
-
 # 地方/城市名
 export locationName=Shenyang
-
 # 组织/公司名称
 export organizationName=example
-
 # 组织/公司部门名称
 export sectionName=develop
-
 echo "Getting Certificate Authority..."
 openssl genrsa -out ca.key 4096
 openssl req -x509 -new -nodes -sha512 -days 3650 \
   -subj "/C=$contryName/ST=$stateName/L=$locationName/O=$organizationNaem/OU=$sectionName/CN=$domain" \
   -key ca.key \
   -out ca.crt
-
 echo "Create your own Private Key..."
 openssl genrsa -out nginx.key 4096
-
 echo "Generate a Certificate Signing Request..."
 openssl req -sha512 -new \
   -subj "/C=$contryName/ST=$stateName/L=$locationName/O=$organizationNaem/OU=$sectionName/CN=$domain" \
   -key nginx.key \
   -out $domain.csr
-
 echo "Generate the certificate of your registry host..."
 cat > v3.ext <<-EOF
 authorityKeyIdentifier=keyid,issuer
@@ -213,11 +203,8 @@ echo "successful..."
 rm -f /opt/nginx/
 
 sed -i "/* soft nofile 655350/d" /etc/security/limits.conf
-
 sed -i "/* hard nofile 655350/d" /etc/security/limits.conf
-
 sed -i "/* soft nproc 65535/d" /etc/security/limits.conf
-
 sed -i "/* hard nproc 65535/d" /etc/security/limits.conf
 
 %changelog
