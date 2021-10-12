@@ -24,7 +24,7 @@ URL: http://nginx.org
 
 Source0: %{realname}-%{realver}%{?extraver}.%{srcext}
 
-Source1: %{opensslVersion}.tar.gz
+Source1: %{opensslVersion}.%{srcext}
 
 Source2: headers-more-nginx-module-master.tar.gz
 

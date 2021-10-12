@@ -14,6 +14,7 @@ download:
 	curl -L --connect-timeout 10 -m 20 ${OPENSSL_DOWNLOAD_URL}/OpenSSL_${OPENSSL_VERSION}.tar.gz \
     		-o ${RESOURCE_DIR}/openssl-OpenSSL_${OPENSSL_VERSION}.tar.gz
 
+	pwd
 	ls ${RESOURCE_DIR}
 
 replace:
@@ -23,6 +24,8 @@ replace:
 
 build:
 	yum install -y rpm-build dos2unix
+	pwd
+	ls ${RESOURCE_DIR}
 	rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
 
 all: download replace build
