@@ -56,7 +56,7 @@ Source25: ngx_devel_kit-0.3.0.tar.gz
 
 Requires: logrotate
 
-#BuildRequires: gcc zlib-devel pcre-devel
+BuildRequires: gcc
 
 %description
 
@@ -68,31 +68,67 @@ nginx [engine x] is an HTTP and reverse proxy server
 %setup -q -n %{realname}-%{realver}%{?extraver} -a1 -a2 -a3 -a4 -a5 -a6 -a21 -a22 -a23 -a24 -a25
 
 %build
-ls
-
 # lua
 cd LuaJIT-2.0.5 && make -j $(nproc) && \
   make install PREFIX=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2
-cd ../
+cd -
 
 export LUAJIT_LIB=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/lib
 export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/luajit-2.0
 
-./configure --prefix=/opt/nginx --with-stream \
-        --pid-path=/var/run/nginx.pid \
-        --sbin-path=%{_sbindir}/%{name}
-        --with-openssl=./%{opensslVersion} \
-        --with-pcre=./pcre-8.44 \
-        --with-zlib=./zlib-1.2.11 \
-        --with-stream_ssl_preread_module --with-stream_ssl_module \
-        --with-http_stub_status_module --with-http_ssl_module \
-        --with-http_gzip_static_module \
-        --add-module=./ngx_cache_purge-2.3 \
-        --add-module=./headers-more-nginx-module-master \
-        --add-module=./naxsi-0.56/naxsi_src \
-        --add-module=./ngx-fancyindex-master \
-        --add-module=./ngx_devel_kit-0.3.0 \
-        --add-module=./lua-nginx-module-0.10.13
+./configure --prefix=/etc/nginx \
+    --sbin-path=/usr/sbin/nginx \
+    --modules-path=/usr/lib64/nginx/modules \
+    --conf-path=/etc/nginx/nginx.conf
+    --error-log-path=/var/log/nginx/error.log \
+    --http-log-path=/var/log/nginx/access.log \
+    --pid-path=/var/run/nginx.pid \
+    --lock-path=/var/run/nginx.lock \
+    --http-client-body-temp-path=/var/cache/nginx/client_temp \
+    --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+    --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+    --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
+    --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+    --user=nginx \
+    --group=nginx \
+    --with-compat \
+    --with-file-aio \
+    --with-threads \
+    --with-openssl=./%{opensslVersion} \
+    --with-pcre=./pcre-8.44 \
+    --with-zlib=./zlib-1.2.11 \
+    --with-stream_ssl_preread_module --with-stream_ssl_module \
+    --with-http_stub_status_module --with-http_ssl_module \
+    --with-http_gzip_static_module \
+    --add-module=./ngx_cache_purge-2.3 \
+    --add-module=./headers-more-nginx-module-master \
+    --add-module=./naxsi-0.56/naxsi_src \
+    --add-module=./ngx-fancyindex-master \
+    --add-module=./ngx_devel_kit-0.3.0 \
+    --add-module=./lua-nginx-module-0.10.13 \
+    --with-http_addition_module \
+    --with-http_auth_request_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_mp4_module \
+    --with-http_random_index_module \
+    --with-http_realip_module \
+    --with-http_secure_link_module \
+    --with-http_slice_module \
+    --with-http_ssl_module \
+    --with-http_stub_status_module \
+    --with-http_sub_module \
+    --with-http_v2_module \
+    --with-mail \
+    --with-mail_ssl_module \
+    --with-stream \
+    --with-stream_realip_module \
+    --with-stream_ssl_module \
+    --with-stream_ssl_preread_module \
+    --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC' \
+    --with-ld-opt='-Wl,-z,relro -Wl,-z,now -pie'
 
 make -j $(nproc)
 
@@ -118,8 +154,6 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 
 %post
 
-chkconfig nginx on
-
 echo "* soft nofile 655350" >> /etc/security/limits.conf
 
 echo "* hard nofile 655350" >> /etc/security/limits.conf
@@ -131,9 +165,9 @@ echo "* hard nproc 65535" >> /etc/security/limits.conf
 #sed -i '/\/etc\/logrotate.d\/nginx/d' /etc/crontab
 #echo "0 0 * * * root bash /usr/sbin/logrotate -f /etc/logrotate.d/nginx" >> /etc/crontab
 mkdir -p ~/.vim
-cp -r -v /opt/nginx/vim ~/.vim/
+cp -r -v /etc/nginx/vim ~/.vim/
 cat > ~/.vim/filetype.vim <<EOF
-au BufRead,BufNewFile /opt/nginx/conf/conf.d/*.conf set ft=nginx
+au BufRead,BufNewFile /etc/nginx/conf.d/*.conf set ft=nginx
 EOF
 
 chmod +x /opt/nginx/lj2/lib/*
@@ -201,7 +235,7 @@ echo "successful..."
 
 %postun
 
-rm -f /opt/nginx/
+rm -rf /etc/nginx/
 
 sed -i "/* soft nofile 655350/d" /etc/security/limits.conf
 sed -i "/* hard nofile 655350/d" /etc/security/limits.conf
