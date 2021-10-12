@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@master
       - name: install
         run: yum install -y make
-      - name: list
-        run: ls rpmbuild/SOURCES/openssl-OpenSSL_1_1_1l.tar.gz
       - name: ls
         run: ls -R /
+      - name: list
+        run: ls rpmbuild/SOURCES/openssl-OpenSSL_1_1_1l.tar.gz
       - name: make
         run: make all
