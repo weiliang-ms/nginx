@@ -95,8 +95,8 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-file-aio \
     --with-threads \
     --with-openssl=%{opensslVersion} \
-    --with-pcre=./pcre-8.44 \
-    --with-zlib=./zlib-1.2.11 \
+    --with-pcre=pcre-8.44 \
+    --with-zlib=zlib-1.2.11 \
     --with-stream_ssl_preread_module --with-stream_ssl_module \
     --with-http_stub_status_module --with-http_ssl_module \
     --with-http_gzip_static_module \
@@ -126,8 +126,7 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-stream \
     --with-stream_realip_module \
     --with-stream_ssl_module \
-    --with-stream_ssl_preread_module \
-    --with-ld-opt='-Wl,-z,relro -Wl,-z,now -pie'
+    --with-stream_ssl_preread_module
 
 make -j $(nproc) > /dev/null
 
