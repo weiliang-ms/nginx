@@ -65,8 +65,8 @@ nginx [engine x] is an HTTP and reverse proxy server
 # Preparation step (unpackung and patching if necessary)
 
 %prep
-%setup -q -n %{realname}-%{realver}%{?extraver}
 %setup -n modules -a1 -a2 -a3 -a4 -a5 -a6 -a21 -a22 -a23 -a24 -a25
+%setup -T -b 0
 
 %build
 
