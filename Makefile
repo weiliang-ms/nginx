@@ -1,11 +1,11 @@
-NGINX_VERSION:="1.20.1"
-OPENSSL_VERSION:="1_1_1l"
+NGINX_VERSION:=1.20.1
+OPENSSL_VERSION:=1_1_1l
 
-RESOURCE_DIR:="rpmbuild/SOURCES"
-SPECS_DIR:="rpmbuild/SPECS"
+RESOURCE_DIR:=rpmbuild/SOURCES
+SPECS_DIR:=rpmbuild/SPECS
 
-NGINX_DOWNLOAD_URL:="https://nginx.org/download"
-OPENSSL_DOWNLOAD_URL:="https://github.com/openssl/openssl/archive/refs/tags/"
+NGINX_DOWNLOAD_URL:=https://nginx.org/download
+OPENSSL_DOWNLOAD_URL:=https://github.com/openssl/openssl/archive/refs/tags
 
 download:
 	curl -L --connect-timeout 10 -m 20 ${NGINX_DOWNLOAD_URL}/nginx-${NGINX_VERSION}.tar.gz \
@@ -15,7 +15,6 @@ download:
     		-o ${RESOURCE_DIR}/openssl-OpenSSL_${OPENSSL_VERSION}.tar.gz
 
 	ls ${RESOURCE_DIR}
-
 
 replace:
 	sed -i "s#NGINX_VERSION#${NGINX_VERSION}#" ${SPECS_DIR}/nginx-el7.spec
