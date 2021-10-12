@@ -19,5 +19,6 @@ jobs:
         run: make all
       - name: list
         run: pwd && ls -R rpmbuild
+      - run: export HOME=`pwd`
       - name: build
         run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
