@@ -65,15 +65,15 @@ nginx [engine x] is an HTTP and reverse proxy server
 # Preparation step (unpackung and patching if necessary)
 
 %prep
-%setup -n modules -a1 -a2 -a3 -a4 -a5 -a6 -a21 -a22 -a23 -a24 -a25
-%setup -T -b 0
+%setup -q -n %{realname}-%{realver}%{?extraver} -a1 -a2 -a3 -a4 -a5 -a6 -a21 -a22 -a23 -a24 -a25
 
 %build
+ls
 
 # lua
-cd modules/LuaJIT-2.0.5 && make -j $(nproc) && \
+cd LuaJIT-2.0.5 && make -j $(nproc) && \
   make install PREFIX=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2
-cd -
+cd ../
 
 export LUAJIT_LIB=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/lib
 export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/luajit-2.0
