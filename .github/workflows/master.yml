@@ -14,7 +14,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
       - name: install
-        run: yum install -y make rpm-build dos2unix
+        run: yum install -y make rpm-build dos2unix gcc
       - name: make
         run: make all
       - name: list
