@@ -79,7 +79,7 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
 ./configure --prefix=/etc/nginx \
     --sbin-path=/usr/sbin/nginx \
     --modules-path=/usr/lib64/nginx/modules \
-    --conf-path=/etc/nginx/nginx.conf
+    --conf-path=/etc/nginx/nginx.conf \
     --error-log-path=/var/log/nginx/error.log \
     --http-log-path=/var/log/nginx/access.log \
     --pid-path=/var/run/nginx.pid \
@@ -153,6 +153,9 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 /opt/nginx/*
 
 %post
+
+groupadd nginx
+useradd nginx -g nginx -s /sbin/nologin -M
 
 echo "* soft nofile 655350" >> /etc/security/limits.conf
 
