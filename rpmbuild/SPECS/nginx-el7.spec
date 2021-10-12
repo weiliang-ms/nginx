@@ -130,16 +130,15 @@ export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/lu
     --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC' \
     --with-ld-opt='-Wl,-z,relro -Wl,-z,now -pie'
 
-make -j $(nproc)
+make -j $(nproc) > /dev/null
 
 %install
 %__make install DESTDIR=%{buildroot}
 iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %__install -d %{buildroot}~/.vim
 %__install -D -m755 %{S:11} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
-%__install -D -m755 %{S:14} %{buildroot}%{_sysconfdir}/init.d/%{name}
-%__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/opt/nginx/
-%__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/contrib/vim %{buildroot}/opt/nginx/
+%__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/etc/nginx/
+%__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/contrib/vim %{buildroot}/etc/nginx/
 %__cp -r -v %{S:13}/* %{buildroot}/opt/nginx/conf/
 
 %clean
@@ -147,15 +146,18 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 
 %files
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
-%config(noreplace) %{_sysconfdir}/init.d/%{name}
 %config %{_sbindir}/%{name}
 %doc
-/opt/nginx/*
+/etc/nginx/*
 
 %post
 
 groupadd nginx
 useradd nginx -g nginx -s /sbin/nologin -M
+
+mkdir -p /var/log/nginx /var/cache/nginx
+chown nginx:nginx -R /var/log/nginx
+chown nginx:nginx -R /var/cache/nginx
 
 echo "* soft nofile 655350" >> /etc/security/limits.conf
 
