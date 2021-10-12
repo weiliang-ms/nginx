@@ -137,7 +137,7 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %__install -D -m755 %{S:11} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/etc/nginx/
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/contrib/vim %{buildroot}/etc/nginx/
-%__cp -r -v %{S:13}/* %{buildroot}/opt/nginx/conf/
+%__cp -r -v %{S:13}/* %{buildroot}/etc/nginx/conf/
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
