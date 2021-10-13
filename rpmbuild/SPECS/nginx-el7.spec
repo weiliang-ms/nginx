@@ -135,7 +135,7 @@ make -j $(nproc)
 iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %__install -d %{buildroot}~/.vim
 %__install -D -m755 %{S:11} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
-%__install -D -m755 %{S:14} %{buildroot}/usr/lib/systemd/system/nginx.service
+%__install -D -m755 %{S:14} %{buildroot}%{_unitdir}/%{name}.service
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/etc/nginx/
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/contrib/vim %{buildroot}/etc/nginx/
 %__cp -r -v %{S:12} %{buildroot}/etc/nginx/nginx.conf
@@ -146,6 +146,7 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %files
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config %{_sbindir}/%{name}
+%config %{_unitdir}/%{name}.service
 %doc
 /etc/nginx/*
 
