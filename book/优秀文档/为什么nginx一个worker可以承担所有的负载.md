@@ -1,4 +1,4 @@
-![原文地址](https://blog.cloudflare.com/the-sad-state-of-linux-socket-balancing/)
+[原文地址](https://blog.cloudflare.com/the-sad-state-of-linux-socket-balancing/)
 
 ### 单核下运行nginx的一些挑战
 

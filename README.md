@@ -22,10 +22,11 @@
   - [ip_hash支持基于主机号hash](https://blog.csdn.net/yswKnight/article/details/107180893)
   - [开启nginx dump](https://github.com/trimstray/nginx-admins-handbook/blob/master/doc/RULES.md#beginner-use-core-dumps-to-figure-out-why-nginx-keep-crashing)
   - 内置ssl生成工具
-- 样例
+- 使用样例
   - [x] [ssl配置](book/02配置样例/01ssl配置样例.md)
 - 调优列表
   - [x] [worker数量](book/03配置调优/01worker数量调优.md)
+  - [ ] [使用HTTP2](book/03配置调优/02使用HTTP2.md)
 
 ### 构建介质
 
