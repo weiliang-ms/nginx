@@ -33,7 +33,7 @@ jobs:
         run: sudo apt-get install git -y
       - name: publish
         env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.NGINX_TOKEN }}
         run: |
           mkdir -p deploy-doc-dir
           cd deploy-doc-dir
