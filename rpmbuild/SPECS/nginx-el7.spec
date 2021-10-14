@@ -167,9 +167,10 @@ iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 groupadd nginx
 useradd nginx -g nginx -s /sbin/nologin -M
 
-mkdir -p /var/log/nginx /var/cache/nginx
+mkdir -p /var/log/nginx /var/cache/nginx /var/dump/nginx
 chown nginx:nginx -R /var/log/nginx
 chown nginx:nginx -R /var/cache/nginx
+chown nginx:nginx -R /var/dump/nginx
 
 echo "nginx soft nofile 65535" >> /etc/security/limits.conf
 echo "nginx hard nofile 65535" >> /etc/security/limits.conf
@@ -204,7 +205,7 @@ if [ -f /var/run/nginx.pid ];then
 fi
 
 rm -rf /etc/nginx/
-rm -rf /var/log/nginx /var/cache/nginx
+rm -rf /var/log/nginx /var/cache/nginx /var/dump/nginx
 userdel nginx
 sed -i "/nginx soft nofile 655350/d" /etc/security/limits.conf
 sed -i "/nginx hard nofile 655350/d" /etc/security/limits.conf
