@@ -1,5 +1,9 @@
 ## 安装部署
-`
+
+> 下载最新`release`版本
+
+- [release](https://github.com/weiliang-ms/nginx/releases)
+
 ### CentOS7
 
 > 安装

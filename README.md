@@ -7,6 +7,8 @@
 - 一键式安装`nginx`，无需安装其依赖（如zlib-devel|pcre-devel|openssl-devel）
 - 安全可控：可随时更新依赖包版本、模块包版本、`nginx`版本，降低软件漏洞所带来的风险
 
+[nginx使用文档地址](https://weiliang-ms.github.io/nginx/)
+
 ## 优势
 
 内置如下模块/特性:
