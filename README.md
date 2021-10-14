@@ -23,7 +23,7 @@
   - [开启nginx dump](https://github.com/trimstray/nginx-admins-handbook/blob/master/doc/RULES.md#beginner-use-core-dumps-to-figure-out-why-nginx-keep-crashing)
   - 内置ssl生成工具
 - 样例
-  - [x] [ssl配置]()
+  - [x] [ssl配置](book/02配置样例/01ssl配置样例.md)
 - 调优列表
   - [x] [worker数量](book/03配置调优/01worker数量调优.md)
 
