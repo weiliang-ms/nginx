@@ -1,0 +1,5 @@
+# cancel big size file upload defend,cancel use http POST method with empty BODY
+BasicRule wl:1,2,12,16;
+# cancel system log out url defend
+BasicRule wl:1008 "mz:$URL:/logout|ARGS";
+

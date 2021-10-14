@@ -1,0 +1,7 @@
+#LearningMode;
+SecRulesEnabled;
+#SecRulesDisabled;
+DeniedUrl "/RequestDenied";
+## check rules
+CheckRule "$SQL >= 8" BLOCK;
+CheckRule "$XSS >= 8" BLOCK;
