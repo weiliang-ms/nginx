@@ -1,4 +1,4 @@
-### 使用return代替rewrite做重定向
+### 启用PCRE JIT以加速正则表达式的处理
 
 [原文地址](https://github.com/trimstray/nginx-admins-handbook/blob/master/doc/RULES.md#beginner-enable-pcre-jit-to-speed-up-processing-of-regular-expressions)
 - [更多nginx文档](https://weiliang-ms.github.io/nginx/)
@@ -15,7 +15,7 @@
 
 > 使用`pcre_jit`的劣势
 
-在某些情况下，`pcre_jit`可能有负面影响，具体参考[PCRE性能优化](../优秀文档/PCRE性能优化.md)
+在某些情况下，开启`pcre_jit`可能有负面影响，具体参考[PCRE性能优化](https://zherczeg.github.io/sljit/pcre.html)
 
 > 启用方式
 
