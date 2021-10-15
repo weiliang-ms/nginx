@@ -1,4 +1,4 @@
-### 不要使用if指令判断server_name
+### 不要使用if指令判断domain
 
 [原文地址](https://github.com/trimstray/nginx-admins-handbook/blob/master/doc/RULES.md#beginner-use-exact-names-in-a-server_name-directive-if-possible)
 - [更多nginx文档](https://weiliang-ms.github.io/nginx/)

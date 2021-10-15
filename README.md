@@ -26,7 +26,12 @@
   - [x] [ssl配置](book/02配置样例/01ssl配置样例.md)
 - 调优列表
   - [x] [worker数量](book/03配置调优/01worker数量调优.md)
-  - [ ] [使用HTTP2](book/03配置调优/02使用HTTP2.md)
+  - [x] [使用HTTP2](book/03配置调优/02使用HTTP2.md)
+  - [x] [SSL会话缓存](book/03配置调优/03SSL会话缓存.md)
+  - [x] [使用server_name代替if指令判断domain](book/03配置调优/04使用server_name代替if指令判断domain.md)
+  - [x] [使用$request_uri代替正则](book/03配置调优/05使用$request_uri代替正则.md)
+  - [x] [使用try_files指令来确保文件存在](book/03配置调优/06使用try_files指令来确保文件存在.md)
+  - [x] [使用return代替rewrite做重定向](book/03配置调优/07使用return代替rewrite做重定向.md)
 
 ### 构建介质
 
