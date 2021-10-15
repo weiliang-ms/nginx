@@ -108,6 +108,7 @@ set +e
     --with-threads \
     --with-openssl=%{opensslVersion} \
     --with-pcre=%{pcreVersion} \
+    --with-pcre-jit \
     --with-zlib=%{zlibVersion} \
     --add-module=ngx_cache_purge-2.3 \
     --add-module=headers-more-nginx-module-master \
