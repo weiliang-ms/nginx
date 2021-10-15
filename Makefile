@@ -31,11 +31,6 @@ replace:
 	sed -i "s#OPENSSL_VERSION#${OPENSSL_VERSION}#" ${SPECS_DIR}/nginx-el7.spec
 	sed -i "s#PCRE_VERSION#${PCRE_VERSION}#" ${SPECS_DIR}/nginx-el7.spec
 	sed -i "s#ZLIB_VERSION#${ZLIB_VERSION}#" ${SPECS_DIR}/nginx-el7.spec
-
-	sed -i "s#NGINX_VERSION#${NGINX_VERSION}#" ${SPECS_DIR}/nginx-el6.spec
-	sed -i "s#OPENSSL_VERSION#${OPENSSL_VERSION}#" ${SPECS_DIR}/nginx-el6.spec
-	sed -i "s#PCRE_VERSION#${PCRE_VERSION}#" ${SPECS_DIR}/nginx-el6.spec
-	sed -i "s#ZLIB_VERSION#${ZLIB_VERSION}#" ${SPECS_DIR}/nginx-el6.spec
 	cat ${SPECS_DIR}/nginx-el7.spec
 
 all: download replace
