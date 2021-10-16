@@ -30,7 +30,7 @@
 - 调优列表
   - [x] [worker数量](book/03配置调优/01worker数量调优.md)
   - [ ] [使用HTTP2](book/03配置调优/02使用HTTP2.md)
-  - [ ] [SSL会话缓存](book/03配置调优/03SSL会话缓存.md)
+  - [ ] [https加固](book/03配置调优/03SSL加固.md)
   - [ ] [使用server_name代替if指令判断domain](book/03配置调优/04使用server_name代替if指令判断domain.md)
   - [ ] [使用$request_uri代替正则](book/03配置调优/05使用$request_uri代替正则.md)
   - [ ] [使用try_files指令来确保文件存在](book/03配置调优/06使用try_files指令来确保文件存在.md)
@@ -38,6 +38,9 @@
   - [ ] [pcre开启JIT调优](book/03配置调优/08启用PCRE-JIT以加速正则表达式的处理.md)
   - [ ] [upstream开启keepalive](book/03配置调优/09upstream开启keepalive.md)
   - [ ] [尽可能精准配置location](book/03配置调优/10尽可能精准配置location.md)
+- 加固列表
+  - [x] 安装最新版nginx
+  - [x] [使用非特权用户运行nginx](book/04安全加固/02使用非特权用户运行nginx.md)
 
 ### 构建介质
 

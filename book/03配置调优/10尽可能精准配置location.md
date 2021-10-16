@@ -1,5 +1,9 @@
 ### location尽可能的精确
 
+[原文地址](https://github.com/trimstray/nginx-admins-handbook/blob/master/doc/RULES.md#rationale-32)
+- [更多nginx文档](https://weiliang-ms.github.io/nginx/)
+- [更多linux相关文档](https://weiliang-ms.github.io/wl-awesome/)
+
 > 解释说明
 
 精确的`location`匹配通常被用来加快选择过程，匹配通过后立即结束算法的执行。

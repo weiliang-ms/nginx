@@ -1,0 +1,11 @@
+location ~* ^.*(\.(?:git|svn|hg|bak|bckp|save|old|orig|original|test|conf|cfg|dist|in[ci]|log|sql|mdb|sw[op]|htaccess|php#|php~|php_bak|aspx?|tpl|sh|bash|bin|exe|dll|jsp|out|cache|))$ {
+
+  # Use also rate limiting:
+  # in server context: limit_req_zone $binary_remote_addr zone=per_ip_5r_s:5m rate=5r/s;
+  limit_req zone=per_ip_5r_s;
+
+  deny all;
+  access_log /var/log/nginx/restricted-files-access.log main;
+  access_log /var/log/nginx/restricted-files-error.log main;
+
+}
