@@ -39,9 +39,21 @@
   - [ ] [upstream开启keepalive](book/03配置调优/09upstream开启keepalive.md)
   - [ ] [尽可能精准配置location](book/03配置调优/10尽可能精准配置location.md)
 - 加固列表
-  - [x] 安装最新版nginx
+  - [x] 安装最新版`nginx`
+  - [x] 使用最新版本`openssl`
   - [x] [使用非特权用户运行nginx](book/04安全加固/02使用非特权用户运行nginx.md)
+  - [x] [隐藏版本信息](book/04安全加固/04隐藏nginx版本信息.md)
   - [ ] [保护敏感资源](book/04安全加固/03保护敏感资源.md)
+  - [ ] ssl加固(TODO)
+  
+
+## TODO
+
+- [ ] 自定义异常页
+- [ ] lua块
+- [ ] waf功能
+- [ ] 全局黑名单
+- [ ] debug
 
 ### 构建介质
 

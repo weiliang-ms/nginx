@@ -1,0 +1,12 @@
+proxy_hide_header X-Application-Context;
+proxy_hide_header Access-Control-Allow-Origin;
+proxy_hide_header X-Powered-By;
+proxy_hide_header X-AspNetMvc-Version;
+proxy_hide_header X-Drupal-Cache;
+proxy_hide_header X-Powered-By;
+proxy_hide_header Server;
+proxy_hide_header X-AspNet-Version;
+proxy_hide_header X-Drupal-Dynamic-Cache;
+proxy_hide_header X-Generator;
+proxy_hide_header X-Runtime;
+proxy_hide_header X-Rack-Cache;
