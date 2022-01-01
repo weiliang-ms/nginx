@@ -8,7 +8,7 @@ SPECS_DIR:=rpmbuild/SPECS
 
 NGINX_DOWNLOAD_URL:=https://nginx.org/download
 OPENSSL_DOWNLOAD_URL:=https://github.com/openssl/openssl/archive/refs/tags
-PCRE_DOWNLOAD_URL:=http://ftp.pcre.org/pub/pcre
+PCRE_DOWNLOAD_URL:=https://netix.dl.sourceforge.net/project/pcre/pcre/8.45
 ZLIB_DOWNLOAD_URL:=http://www.zlib.net
 
 download:
