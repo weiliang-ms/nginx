@@ -145,7 +145,7 @@ make -j $(nproc)
 %__make install DESTDIR=%{buildroot}
 iconv -f koi8-r CHANGES.ru > c && %__mv -f c CHANGES.ru
 %__install -d %{buildroot}~/.vim
-%__install -D -m755 %{S:11} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
+%__install -D -m444 %{S:11} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 %__install -D -m755 %{S:14} %{buildroot}%{_unitdir}/%{name}.service
 %__install -D -m755 %{S:15} %{buildroot}%{_sbindir}/generate-ssl.sh
 %__cp -r -v %{_builddir}/%{realname}-%{realver}%{?extraver}/lj2 %{buildroot}/etc/nginx/
