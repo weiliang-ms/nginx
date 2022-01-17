@@ -19,7 +19,8 @@ jobs:
       - name: modify workdir
         run: echo %_topdir $PWD/rpmbuild > ~/.rpmmacros
       - name: build
-        run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
+        #run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
+        run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
       - name: release
         uses: softprops/action-gh-release@v1
         with:
