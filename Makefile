@@ -1,7 +1,7 @@
 NGINX_VERSION:=1.22.0
 OPENSSL_VERSION:=1_1_1l
 PCRE_VERSION:=8.45
-ZLIB_VERSION:=1.2.11
+ZLIB_VERSION:=1.2.12
 
 RESOURCE_DIR:=rpmbuild/SOURCES
 SPECS_DIR:=rpmbuild/SPECS
@@ -9,7 +9,7 @@ SPECS_DIR:=rpmbuild/SPECS
 NGINX_DOWNLOAD_URL:=https://nginx.org/download
 OPENSSL_DOWNLOAD_URL:=https://github.com/openssl/openssl/archive/refs/tags
 PCRE_DOWNLOAD_URL:=https://netix.dl.sourceforge.net/project/pcre/pcre/8.45
-ZLIB_DOWNLOAD_URL:=http://www.zlib.net
+ZLIB_DOWNLOAD_URL:=http://zlib.net
 
 download:
 	pwd
