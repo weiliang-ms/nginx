@@ -11,7 +11,7 @@ jobs:
     container: docker.io/centos:7
     steps:
       - name: checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2.4.1
       - name: install
         run: yum install -y make rpm-build dos2unix gcc gcc-c++
       - name: make
