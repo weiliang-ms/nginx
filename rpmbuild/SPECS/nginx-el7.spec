@@ -30,7 +30,7 @@ Source0: %{realname}-%{realver}%{?extraver}.%{srcext}
 
 Source1: %{opensslVersion}.%{srcext}
 
-Source2: headers-more-nginx-module-master.tar.gz
+Source2: headers-more-nginx-module-0.37.tar.gz
 
 Source3: naxsi-0.56.tar.gz
 
@@ -111,7 +111,7 @@ set +e
     --with-pcre-jit \
     --with-zlib=%{zlibVersion} \
     --add-module=ngx_cache_purge-2.3 \
-    --add-module=headers-more-nginx-module-master \
+    --add-module=headers-more-nginx-module-0.37 \
     --add-module=naxsi-0.56/naxsi_src \
     --add-module=ngx-fancyindex-master \
     --add-module=ngx_devel_kit-0.3.0 \
