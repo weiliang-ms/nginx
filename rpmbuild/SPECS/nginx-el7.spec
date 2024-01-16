@@ -56,9 +56,9 @@ Source22: %{zlibVersion}.%{srcext}
 
 Source23: LuaJIT-2.0.5.tar.gz
 
-Source24: lua-nginx-module-0.10.13.tar.gz
+Source24: lua-nginx-module-0.10.26.tar.gz
 
-Source25: ngx_devel_kit-0.3.0.tar.gz
+Source25: ngx_devel_kit-0.3.3.tar.gz
 
 Requires: logrotate
 
@@ -114,8 +114,8 @@ set +e
     --add-module=headers-more-nginx-module-0.37 \
     --add-module=naxsi-0.56/naxsi_src \
     --add-module=ngx-fancyindex-master \
-    --add-module=ngx_devel_kit-0.3.0 \
-    --add-module=lua-nginx-module-0.10.13 \
+    --add-module=ngx_devel_kit-0.3.3 \
+    --add-module=lua-nginx-module-0.10.26 \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
