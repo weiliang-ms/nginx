@@ -115,7 +115,6 @@ set +e
     --add-module=naxsi-0.56/naxsi_src \
     --add-module=ngx-fancyindex-master \
     --add-module=ngx_devel_kit-0.3.3 \
-#    --add-module=lua-nginx-module-0.10.26 \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
