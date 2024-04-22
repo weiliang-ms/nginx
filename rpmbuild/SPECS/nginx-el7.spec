@@ -75,12 +75,12 @@ nginx [engine x] is an HTTP and reverse proxy server
 
 %build
 # lua
-cd LuaJIT-2.0.5 && make -j $(nproc) && \
-  make install PREFIX=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2
-cd -
-
-export LUAJIT_LIB=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/lib
-export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/luajit-2.0
+#cd LuaJIT-2.0.5 && make -j $(nproc) && \
+#  make install PREFIX=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2
+#cd -
+#
+#export LUAJIT_LIB=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/lib
+#export LUAJIT_INC=%{_builddir}/%{realname}-%{realver}%{?extraver}/lj2/include/luajit-2.0
 
 # ip_hash
 set -e
@@ -115,7 +115,7 @@ set +e
     --add-module=naxsi-0.56/naxsi_src \
     --add-module=ngx-fancyindex-master \
     --add-module=ngx_devel_kit-0.3.3 \
-    --add-module=lua-nginx-module-0.10.26 \
+#    --add-module=lua-nginx-module-0.10.26 \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
@@ -191,11 +191,11 @@ cat > ~/.vim/filetype.vim <<EOF
 au BufRead,BufNewFile /etc/nginx/conf.d/*.conf set ft=nginx
 EOF
 
-chmod +x /etc/nginx/lj2/lib/*
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/etc/nginx/lj2/lib
-\cp /etc/nginx/lj2/lib/libluajit-5.1.so.2 /lib/
-ldconfig
+#chmod +x /etc/nginx/lj2/lib/*
+#
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/etc/nginx/lj2/lib
+#\cp /etc/nginx/lj2/lib/libluajit-5.1.so.2 /lib/
+#ldconfig
 
 mkdir -p /etc/nginx/ssl
 cd /etc/nginx/ssl
