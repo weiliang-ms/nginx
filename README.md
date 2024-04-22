@@ -9,6 +9,12 @@
 
 [nginx使用文档地址](https://weiliang-ms.github.io/nginx/)
 
+## 版本说明
+
+由于兼容性问题，nginx-v1.24 版本将不再支持内嵌 lua
+
+v1.22 及之前版本支持 lua
+
 ## 优势
 
 - [ ] 代表需要手动开启
