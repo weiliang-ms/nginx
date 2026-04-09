@@ -62,7 +62,7 @@ for source_file in \
     %{_sourcedir}/ngx-fancyindex-master.tar.gz \
     %{_sourcedir}/ngx_cache_purge-2.3.tar.gz \
     %{_sourcedir}/pcre-8.45.tar.gz \
-    %{_sourcedir}/zlib-1.3.1.tar.gz \
+    %{_sourcedir}/zlib-1.3.2.tar.gz \
     %{_sourcedir}/LuaJIT-2.0.5.tar.gz \
     %{_sourcedir}/lua-nginx-module-0.10.26.tar.gz \
     %{_sourcedir}/ngx_devel_kit-0.3.3.tar.gz
