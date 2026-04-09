@@ -54,27 +54,27 @@ nginx [engine x] is an HTTP and reverse proxy server
 %setup -q -n %{realname}-%{realver}%{?extraver}
 
 # 解压 OpenSSL
-tar -xzf %{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 headers-more-nginx-module
-tar -xzf %{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 naxsi
-tar -xzf %{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 nginx_upstream_check_module
-tar -xzf %{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx-fancyindex
-tar -xzf %{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx_cache_purge
-tar -xzf %{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 PCRE
-tar -xzf %{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 Zlib
-tar -xzf %{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 LuaJIT
-tar -xzf %{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 lua-nginx-module
-tar -xzf %{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx_devel_kit
-tar -xzf %{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xaf %{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 
 # ==================== 编译 ====================
 %build
