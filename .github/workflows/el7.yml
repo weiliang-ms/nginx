@@ -12,6 +12,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+
+      - name: Install devtoolset for modern C++ libraries
+        run: |
+          # 安装 SCL 仓库
+          yum install -y centos-release-scl
+          # 安装 devtoolset-11（包含较新的 libstdc++）
+          yum install -y devtoolset-11-gcc-c++
+          # 启用 devtoolset 环境
+          source /opt/rh/devtoolset-11/enable
       - name: install
         run: yum install -y make rpm-build dos2unix gcc gcc-c++
       - name: make
