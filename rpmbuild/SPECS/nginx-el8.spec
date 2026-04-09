@@ -79,6 +79,10 @@ nginx [engine x] is an HTTP and reverse proxy server
 # ==================== 编译 ====================
 %build
 
+# 调试：查看解压后的目录
+ls -la %{_builddir}/%{realname}-%{realver}%{?extraver}/
+ls -la %{_builddir}/%{realname}-%{realver}%{?extraver}/ | grep -E "(ngx_cache|headers-more|naxsi|fancyindex|upstream_check|ngx_devel_kit|lua)"
+
 # 修复 ip_hash 模块的 IPv6 兼容性
 sed -i "s;iphp->addrlen = 3;iphp->addrlen = 4;g" src/http/modules/ngx_http_upstream_ip_hash_module.c
 sed -i "s;hash_pseudo_addr[3];hash_pseudo_addr[4];" src/http/modules/ngx_http_upstream_ip_hash_module.c
