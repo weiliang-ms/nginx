@@ -8,19 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: docker.io/centos:7
+    container: rockylinux:8
     steps:
       - name: checkout
         uses: actions/checkout@v5
-
-      - name: Install devtoolset for modern C++ libraries
-        run: |
-          # 安装 SCL 仓库
-          yum install -y centos-release-scl
-          # 安装 devtoolset-11（包含较新的 libstdc++）
-          yum install -y devtoolset-11-gcc-c++
-          # 启用 devtoolset 环境
-          source /opt/rh/devtoolset-11/enable
       - name: install
         run: yum install -y make rpm-build dos2unix gcc gcc-c++
       - name: make
@@ -28,8 +19,8 @@ jobs:
       - name: modify workdir
         run: echo %_topdir $PWD/rpmbuild > ~/.rpmmacros
       - name: build
-        run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el7.spec
-        #run: rpmbuild -ba rpmbuild/SPECS/nginx-el7.spec
+        run: cd rpmbuild && rpmbuild -ba SPECS/nginx-el8.spec
+        #run: rpmbuild -ba rpmbuild/SPECS/nginx-el8.spec
       - name: release
         uses: softprops/action-gh-release@v1
         with:
