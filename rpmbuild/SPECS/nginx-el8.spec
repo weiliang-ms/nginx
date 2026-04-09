@@ -44,19 +44,49 @@ BuildRequires:  gcc gcc-c++
 nginx [engine x] is an HTTP and reverse proxy server
 
 # ==================== 解压准备 ====================
+#%prep
+#%setup -q -n %{realname}-%{realver}%{?extraver} \
+#    -a1 -a2 -a3 -a4 -a5 -a6 \
+#    -a21 -a22 -a23 -a24 -a25
+# ==================== 解压准备 ====================
 %prep
-%setup -q -n %{realname}-%{realver}%{?extraver} \
-    -a1 -a2 -a3 -a4 -a5 -a6 \
-    -a21 -a22 -a23 -a24 -a25
+%setup -q -n %{realname}-%{realver}%{?extraver}
+
+# 解压 OpenSSL
+tar -xzf %{_sourcedir}/%{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 headers-more-nginx-module
+tar -xzf %{_sourcedir}/%{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 naxsi
+tar -xzf %{_sourcedir}/%{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 nginx_upstream_check_module
+tar -xzf %{_sourcedir}/%{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 ngx-fancyindex
+tar -xzf %{_sourcedir}/%{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 ngx_cache_purge
+tar -xzf %{_sourcedir}/%{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 PCRE
+tar -xzf %{_sourcedir}/%{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 Zlib
+tar -xzf %{_sourcedir}/%{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 LuaJIT
+tar -xzf %{_sourcedir}/%{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 lua-nginx-module
+tar -xzf %{_sourcedir}/%{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 解压 ngx_devel_kit
+tar -xzf %{_sourcedir}/%{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 
 # ==================== 编译 ====================
 %build
 
 # 修复 ip_hash 模块的 IPv6 兼容性
-set -e
 sed -i "s;iphp->addrlen = 3;iphp->addrlen = 4;g" src/http/modules/ngx_http_upstream_ip_hash_module.c
 sed -i "s;hash_pseudo_addr[3];hash_pseudo_addr[4];" src/http/modules/ngx_http_upstream_ip_hash_module.c
-set +e
+
+# Rocky Linux 8 特定配置
+%if 0%{?rhel} == 8
+# 确保使用系统 OpenSSL
+export CFLAGS="-O2 -g -pipe"
+%endif
 
 # 配置编译选项
 ./configure \
@@ -110,7 +140,7 @@ set +e
     --with-stream_ssl_preread_module
 
 # 并行编译
-make -j %{_smp_ncpus}
+make %{?_smp_mflags}
 
 # ==================== 安装 ====================
 %install
