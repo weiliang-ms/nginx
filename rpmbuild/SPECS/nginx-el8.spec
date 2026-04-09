@@ -75,21 +75,33 @@ do
 done
 
 # ==================== 编译 ====================
+# ==================== 编译 ====================
 %build
 
 # 调试：查看解压后的目录
+echo "=== Listing BUILD directory ==="
 ls -la %{_builddir}/%{realname}-%{realver}%{?extraver}/
-ls -la %{_builddir}/%{realname}-%{realver}%{?extraver}/ | grep -E "(ngx_cache|headers-more|naxsi|fancyindex|upstream_check|ngx_devel_kit|lua)"
+
+# 调试：检查关键目录是否存在
+echo "=== Checking critical directories ==="
+for dir in \
+    openssl-OpenSSL_1_1_1l \
+    headers-more-nginx-module-0.37 \
+    naxsi-0.56 \
+    ngx_cache_purge-2.3 \
+    pcre-8.45 \
+    zlib-1.3.2
+do
+    if [ -d "%{_builddir}/%{realname}-%{realver}%{?extraver}/$dir" ]; then
+        echo "✓ $dir exists"
+    else
+        echo "✗ $dir NOT FOUND - this will cause configure to fail"
+    fi
+done
 
 # 修复 ip_hash 模块的 IPv6 兼容性
 sed -i "s;iphp->addrlen = 3;iphp->addrlen = 4;g" src/http/modules/ngx_http_upstream_ip_hash_module.c
 sed -i "s;hash_pseudo_addr[3];hash_pseudo_addr[4];" src/http/modules/ngx_http_upstream_ip_hash_module.c
-
-# Rocky Linux 8 特定配置
-%if 0%{?rhel} == 8
-# 确保使用系统 OpenSSL
-export CFLAGS="-O2 -g -pipe"
-%endif
 
 # 配置编译选项
 ./configure \
@@ -111,15 +123,14 @@ export CFLAGS="-O2 -g -pipe"
     --with-compat \
     --with-file-aio \
     --with-threads \
-    --with-openssl=%{opensslVersion} \
-    --with-pcre=%{pcreVersion} \
+    --with-openssl=openssl-OpenSSL_1_1_1l \
+    --with-pcre=pcre-8.45 \
     --with-pcre-jit \
-    --with-zlib=%{zlibVersion} \
+    --with-zlib=zlib-1.3.2 \
     --add-module=ngx_cache_purge-2.3 \
     --add-module=headers-more-nginx-module-0.37 \
     --add-module=naxsi-0.56/naxsi_src \
     --add-module=ngx-fancyindex-master \
-    --add-module=ngx_devel_kit-0.3.3 \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
@@ -142,8 +153,34 @@ export CFLAGS="-O2 -g -pipe"
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module
 
+# 检查 configure 是否成功
+if [ $? -ne 0 ]; then
+    echo "=== CONFIGURE FAILED ==="
+    echo "=== autoconf.err ==="
+    cat objs/autoconf.err 2>/dev/null || echo "No autoconf.err"
+    echo "=== configure output ==="
+    cat objs/autoconf.out 2>/dev/null || echo "No autoconf.out"
+    exit 1
+fi
+
+echo "=== CONFIGURE SUCCESS ==="
+
+# 显示 Makefile 的关键部分
+echo "=== Makefile targets ==="
+grep "^all:" objs/Makefile || echo "No all target"
+
 # 并行编译
-make %{?_smp_mflags}
+echo "=== Starting make ==="
+make %{?_smp_mflags} V=1
+
+# 检查 make 是否成功
+if [ $? -ne 0 ]; then
+    echo "=== MAKE FAILED ==="
+    echo "=== Last 100 lines of build output ==="
+    exit 1
+fi
+
+echo "=== MAKE SUCCESS ==="
 
 # ==================== 安装 ====================
 %install
