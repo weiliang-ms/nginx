@@ -53,28 +53,28 @@ nginx [engine x] is an HTTP and reverse proxy server
 %prep
 %setup -q -n %{realname}-%{realver}%{?extraver}
 
-# 解压 OpenSSL
-tar -xaf %{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 headers-more-nginx-module
-tar -xaf %{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 naxsi
-tar -xaf %{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 nginx_upstream_check_module
-tar -xaf %{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 ngx-fancyindex
-tar -xaf %{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 ngx_cache_purge
-tar -xaf %{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 PCRE
-tar -xaf %{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 Zlib
-tar -xaf %{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 LuaJIT
-tar -xaf %{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 lua-nginx-module
-tar -xaf %{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
-# 解压 ngx_devel_kit
-tar -xaf %{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+# 定义解压函数
+%define unpack_source() \
+    if [ -f "%{SOURCE%1}" ] && [ -s "%{SOURCE%1}" ]; then \
+        echo "Unpacking %{SOURCE%1}"; \
+        tar -xaf "%{SOURCE%1}" -C %{_builddir}/%{realname}-%{realver}%{?extraver}; \
+    else \
+        echo "Warning: %{SOURCE%1} not found or empty"; \
+    fi
+
+%{unpack_source 1}
+%{unpack_source 2}
+%{unpack_source 3}
+%{unpack_source 4}
+%{unpack_source 5}
+%{unpack_source 6}
+%{unpack_source 21}
+%{unpack_source 22}
+%{unpack_source 23}
+%{unpack_source 24}
+%{unpack_source 25}
+
+
 
 # ==================== 编译 ====================
 %build
