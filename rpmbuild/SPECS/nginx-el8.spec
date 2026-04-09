@@ -53,28 +53,28 @@ nginx [engine x] is an HTTP and reverse proxy server
 %prep
 %setup -q -n %{realname}-%{realver}%{?extraver}
 
-# 定义解压函数
-%define unpack_source() \
-    if [ -f "%{SOURCE%1}" ] && [ -s "%{SOURCE%1}" ]; then \
-        echo "Unpacking %{SOURCE%1}"; \
-        tar -xaf "%{SOURCE%1}" -C %{_builddir}/%{realname}-%{realver}%{?extraver}; \
-    else \
-        echo "Warning: %{SOURCE%1} not found or empty"; \
+# 解压所有额外的 Source 文件
+for source_file in \
+    %{_sourcedir}/openssl-OpenSSL_1_1_1l.tar.gz \
+    %{_sourcedir}/headers-more-nginx-module-0.37.tar.gz \
+    %{_sourcedir}/naxsi-0.56.tar.gz \
+    %{_sourcedir}/nginx_upstream_check_module-master.tar.gz \
+    %{_sourcedir}/ngx-fancyindex-master.tar.gz \
+    %{_sourcedir}/ngx_cache_purge-2.3.tar.gz \
+    %{_sourcedir}/pcre-8.45.tar.gz \
+    %{_sourcedir}/zlib-1.3.1.tar.gz \
+    %{_sourcedir}/LuaJIT-2.0.5.tar.gz \
+    %{_sourcedir}/lua-nginx-module-0.10.26.tar.gz \
+    %{_sourcedir}/ngx_devel_kit-0.3.3.tar.gz
+do
+    if [ -f "$source_file" ]; then
+        echo "Unpacking: $source_file"
+        tar -xaf "$source_file" -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+    else
+        echo "ERROR: $source_file not found"
+        exit 1
     fi
-
-%{unpack_source 1}
-%{unpack_source 2}
-%{unpack_source 3}
-%{unpack_source 4}
-%{unpack_source 5}
-%{unpack_source 6}
-%{unpack_source 21}
-%{unpack_source 22}
-%{unpack_source 23}
-%{unpack_source 24}
-%{unpack_source 25}
-
-
+done
 
 # ==================== 编译 ====================
 %build
