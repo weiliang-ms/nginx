@@ -1,17 +1,20 @@
 /var/log/nginx/*.log {
-        daily
-        missingok
-        rotate 14
-        compress
-        notifempty
-        create 644 root root
-        sharedscripts
-        minsize 500M
-        dateext
-        dateformat _%Y%m%d
-        postrotate
-        if [ -f /var/run/nginx.pid ]; then
-            kill -USR1 `cat /var/run/nginx.pid`
-        fi
-        endscript
+    daily
+    missingok
+    rotate 20          # 保留20天
+    compress
+    delaycompress
+    notifempty
+    create 644 root root
+    sharedscripts
+    dateext
+    dateformat -%Y%m%d
+
+    # 关键配置
+    size 1G            # 超过1G立即轮转
+    maxsize 60G        # 总日志超过60G开始删除
+
+    postrotate
+        [ -f /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+    endscript
 }
