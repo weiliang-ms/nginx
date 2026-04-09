@@ -49,31 +49,32 @@ nginx [engine x] is an HTTP and reverse proxy server
 #    -a1 -a2 -a3 -a4 -a5 -a6 \
 #    -a21 -a22 -a23 -a24 -a25
 # ==================== 解压准备 ====================
+# ==================== 解压准备 ====================
 %prep
 %setup -q -n %{realname}-%{realver}%{?extraver}
 
 # 解压 OpenSSL
-tar -xzf %{_sourcedir}/%{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:1} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 headers-more-nginx-module
-tar -xzf %{_sourcedir}/%{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:2} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 naxsi
-tar -xzf %{_sourcedir}/%{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:3} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 nginx_upstream_check_module
-tar -xzf %{_sourcedir}/%{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:4} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx-fancyindex
-tar -xzf %{_sourcedir}/%{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:5} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx_cache_purge
-tar -xzf %{_sourcedir}/%{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:6} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 PCRE
-tar -xzf %{_sourcedir}/%{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:21} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 Zlib
-tar -xzf %{_sourcedir}/%{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:22} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 LuaJIT
-tar -xzf %{_sourcedir}/%{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:23} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 lua-nginx-module
-tar -xzf %{_sourcedir}/%{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:24} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 # 解压 ngx_devel_kit
-tar -xzf %{_sourcedir}/%{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
+tar -xzf %{S:25} -C %{_builddir}/%{realname}-%{realver}%{?extraver}
 
 # ==================== 编译 ====================
 %build
